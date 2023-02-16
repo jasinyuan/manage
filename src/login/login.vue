@@ -24,7 +24,7 @@ const username = ref();
 const password = ref();
 
 const goLogin = async () => {
-	const res = await api.mangeLogin(username.value, password.value);
+	const res = await api.salesmanLogin(username.value, password.value);
 	console.log(res);
 };
 </script>
