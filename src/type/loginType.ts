@@ -1,6 +1,6 @@
 export type loginType = {
 	/**
-	 * 状态登录信息（状态信息登录失败才有
+	 * 状态登录信息（状态信息登录失败才有)
 	 * */
 	mag?: string;
 	/**
@@ -20,4 +20,11 @@ export type loginType = {
 	 * 业务员邀请码
 	 * */
 	yqm?: number;
+	/**
+	 * 登录类型
+	 * 1：业务员登录
+	 * 2.后台登录
+	 * 3.用户登录
+	 */
+	id?: number;
 };

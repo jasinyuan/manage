@@ -1,0 +1,1 @@
+<template>consume</template>
