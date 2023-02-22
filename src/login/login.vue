@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import api from "../api/index";
 import router from "../router";
 
@@ -29,7 +29,7 @@ const username = ref();
 const password = ref();
 
 const goLogin = async () => {
-	const res = await api.userLogin(username.value, password.value);
+	const res = await api.mangeLogin(username.value, password.value);
 	const id = res.data.id;
 	const state = res.data.state;
 	if (id === 1) {
