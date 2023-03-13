@@ -5,20 +5,35 @@
 				<div class="header-title">后台管理系统</div>
 				<div class="header-right">
 					<div class="message">icon</div>
-					<div class="uname">name</div>
+					<div class="uname">
+						<el-popover
+							:width="300"
+							popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 15px;"
+						>
+							<template #reference>
+								<div>{{ name }}</div>
+							</template>
+							<template #default>
+								<el-link
+									:underline="false"
+									@click="signout"
+									type="primary"
+									>退出登录</el-link
+								>
+							</template>
+						</el-popover>
+					</div>
 				</div>
 			</div></el-header
 		>
-		<el-container>
+		<el-container class="content_wrap">
 			<el-aside width="220px"
 				><el-row class="tac">
 					<el-col :span="24">
 						<el-menu
-							default-active="1"
+							default-active="4"
 							collapse-transition
 							class="el-menu-vertical-demo"
-							@open="handleOpen"
-							@close="handleClose"
 							v-for="(item, i) in list"
 							:key="i"
 						>
@@ -38,7 +53,7 @@
 					</el-col>
 				</el-row></el-aside
 			>
-			<el-main>main</el-main>
+			<el-main class="main_wrap">main</el-main>
 		</el-container>
 	</div>
 </template>
@@ -48,16 +63,12 @@ import { Location } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import asideclass from "../aside-class/index";
 import { useRouter } from "vue-router";
-const handleOpen = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath);
-};
 
 const list = ref();
 
 const router = useRouter();
+
+const name = ref(window.localStorage.getItem("name"));
 
 const setList = (i: string) => {
 	if (i === "background") {
@@ -73,6 +84,13 @@ const setList = (i: string) => {
 	}
 };
 setList(router.currentRoute._rawValue.name);
+
+const signout = async () => {
+	window.localStorage.setItem("name", "");
+	router.push({
+		path: "/",
+	});
+};
 </script>
 
 <style lang="less" scoped>
@@ -94,19 +112,23 @@ setList(router.currentRoute._rawValue.name);
 			font-size: 25px;
 		}
 		.header-right {
+			margin-right: 66px;
+			margin-top: 25px;
 			display: flex;
-			line-height: 70px;
 			font-size: 18px;
 			.message {
 				margin-right: 76px;
-			}
-			.uname {
-				margin-right: 33px;
 			}
 		}
 	}
 	.el-header /deep/ {
 		padding: 0;
+	}
+	.content_wrap {
+		height: calc(100vh - 70px);
+		.main_wrap {
+			background-color: #f7f7f7;
+		}
 	}
 }
 </style>

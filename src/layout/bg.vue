@@ -4,6 +4,7 @@
 
 <script setup>
 import { onMounted } from "vue";
+
 onMounted(() => {
 	class Circle {
 		//创建对象
@@ -14,9 +15,9 @@ onMounted(() => {
 		constructor(x, y) {
 			this.x = x;
 			this.y = y;
-			this.r = Math.random() * 3;
-			this._mx = Math.random() / 2;
-			this._my = Math.random() / 2;
+			this.r = Math.random() * 4;
+			this._mx = Math.random() / 5;
+			this._my = Math.random() / 5;
 		}
 
 		//canvas 画圆和画直线
@@ -25,9 +26,9 @@ onMounted(() => {
 		drawCircle(ctx) {
 			ctx.beginPath();
 			//arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
-			ctx.arc(this.x, this.y, this.r, 0, 180);
+			ctx.arc(this.x, this.y, this.r, 0, 360);
 			ctx.closePath();
-			ctx.fillStyle = "#337ecc";
+			ctx.fillStyle = "#61A2EF";
 			ctx.fill();
 		}
 
@@ -41,7 +42,7 @@ onMounted(() => {
 				ctx.moveTo(this.x, this.y); //起始点
 				ctx.lineTo(_circle.x, _circle.y); //终点
 				ctx.closePath();
-				ctx.strokeStyle = "#409eff";
+				ctx.strokeStyle = "#61A2EF";
 				ctx.stroke();
 			}
 		}
@@ -51,8 +52,8 @@ onMounted(() => {
 		move(w, h) {
 			this._mx = this.x < w && this.x > 0 ? this._mx : -this._mx;
 			this._my = this.y < h && this.y > 0 ? this._my : -this._my;
-			this.x += this._mx;
-			this.y += this._my;
+			this.x += this._mx / 2;
+			this.y += this._my / 2;
 		}
 	}
 
@@ -68,6 +69,7 @@ onMounted(() => {
 	let w = (canvas.width = canvas.offsetWidth);
 	let h = (canvas.height = canvas.offsetHeight);
 	let circles = [];
+	// let current_circle = new currentCirle(0, 0)
 
 	let draw = function () {
 		ctx.clearRect(0, 0, w, h);
@@ -89,7 +91,7 @@ onMounted(() => {
 		draw();
 	};
 
-	window.addEventListener("load", init(60));
+	window.addEventListener("load", init(70));
 });
 </script>
 

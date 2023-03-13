@@ -15,13 +15,6 @@ export default {
 			},
 		});
 	},
-	/** 后台退出 */
-	quitMage() {
-		return http({
-			url: `/ALogout`,
-			method: "post",
-		});
-	},
 	/** 业务员登录
 	 * @name 账号
 	 * @paw 密码
@@ -36,13 +29,6 @@ export default {
 			},
 		});
 	},
-	/** 业务员退出 */
-	quitSalesman() {
-		return http({
-			url: `/Logout`,
-			method: "post",
-		});
-	},
 	/** 用户登录
 	 * @username 账号
 	 * @password 密码
@@ -55,13 +41,6 @@ export default {
 				username: name,
 				password: paw,
 			},
-		});
-	},
-	/** 用户退出 */
-	quitUser() {
-		return http({
-			url: `/logout`,
-			method: "post",
 		});
 	},
 };
